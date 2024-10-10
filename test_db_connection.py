@@ -2,15 +2,9 @@ import cx_Oracle
 import os
 
 # Database credentials
-db_username = "admin"
-db_password = "Funkytelegram123*"
-
-# DSN with connection timeout parameters
-db_dsn = (
-    "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=your_host)(PORT=your_port))"
-    "(CONNECT_DATA=(SERVICE_NAME=dep_low))"
-    "(CONNECT_TIMEOUT=10)(RETRY_COUNT=3))"
-)
+db_username = os.getenv('DB_USERNAME')
+db_password = os.getenv('DB_PASSWORD')
+db_dsn = os.getenv('DB_DSN')
 
 try:
     # Connect to the Oracle database with a timeout
