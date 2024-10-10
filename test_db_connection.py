@@ -3,22 +3,18 @@ import os
 
 # Database credentials
 db_username = "admin"
-db_password = "Fuzzytelegram123*"
-db_dsn = "dep_low"  # e.g., "adw_high"
+db_password = "Funkytelegram123*"
 
-# Connection parameters
-connection_params = {
-    "user": db_username,
-    "password": db_password,
-    "dsn": db_dsn,
-    "encoding": "UTF-8",
-    "nencoding": "UTF-8",
-    "timeout": 10  # Timeout in seconds
-}
+# DSN with connection timeout parameters
+db_dsn = (
+    "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=your_host)(PORT=your_port))"
+    "(CONNECT_DATA=(SERVICE_NAME=dep_low))"
+    "(CONNECT_TIMEOUT=10)(RETRY_COUNT=3))"
+)
 
 try:
     # Connect to the Oracle database with a timeout
-    connection = cx_Oracle.connect(**connection_params)
+    connection = cx_Oracle.connect(db_username, db_password, db_dsn)
     print("Connected to the database")
     
     # Perform database operations here
