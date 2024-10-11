@@ -2,6 +2,7 @@ import oci
 import pandas as pd
 from io import BytesIO
 import subprocess
+import os
 
 # Configuration
 config_path = "/home/opc/.oci/config"
@@ -72,8 +73,18 @@ try:
     columns = ', '.join([f"{col} VARCHAR2(255)" for col in df.columns])  # Adjust data types as needed
     create_table_sql = f"CREATE TABLE {table_name} ({columns});"
 
+    # Print the SQL command for debugging
+    print(f"SQL Command: {create_table_sql}")
+
     # Run SQL*Plus command to create the table
-    subprocess.run(["sudo", "sqlplus", "$DB_USERNAME/$DB_PASSWORD@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=lqnycsa0.adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=s5bmgthkjolzqu8_dep_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))", f"@{create_table_sql}"], check=True)
+    subprocess.run(
+        [
+            "sudo", "sqlplus",
+            f"{os.environ['DB_USERNAME']}/{os.environ['DB_PASSWORD']}@(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=lqnycsa0.adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=s5bmgthkjolzqu8_dep_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=no))",
+            f"@{create_table_sql}"
+        ],
+        check=True
+    )
 
     print(f"Table {table_name} created successfully.")
 
