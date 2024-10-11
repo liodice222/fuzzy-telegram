@@ -73,7 +73,7 @@ try:
     create_table_sql = f"CREATE TABLE {table_name} ({columns});"
 
     # Run SQL*Plus command to create the table
-    subprocess.run(["sqlplus", "$DB_USERNAME/$DB_PASSWORD@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=lqnycsa0.adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=s5bmgthkjolzqu8_dep_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))", f"@{create_table_sql}"], check=True)
+    subprocess.run(["sudo", "sqlplus", "$DB_USERNAME/$DB_PASSWORD@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=lqnycsa0.adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=s5bmgthkjolzqu8_dep_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))", f"@{create_table_sql}"], check=True)
 
     print(f"Table {table_name} created successfully.")
 
