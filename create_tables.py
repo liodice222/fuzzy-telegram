@@ -5,7 +5,7 @@ from io import BytesIO
 
 # Configuration
 config_path = "/home/opc/.oci/config"
-bucket_name = "DEP-ASH-ADW-01"
+bucket_name = "DEP-ASH-OBJ-01"
 compartment_name = "Data_Engineering_Project"
 db_username = "admin"
 db_password = "Fuzzytelegram123*"
