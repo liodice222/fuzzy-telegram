@@ -3,10 +3,10 @@ import subprocess
 import os
 
 # Define variables
-CSV_FILE_PATH_CUSTOMERS = '/home/opc/customers.csv'
-CSV_FILE_PATH_PAYMENTS = '/home/opc/payments.csv'
-CSV_FILE_PATH_ORDERS = '/home/opc/orders.csv'
-CSV_FILE_PATH_PRODUCTS = '/home/opc/products.csv'
+CSV_FILE_PATH_CUSTOMERS = '/home/opc/downloads/customers.csv'
+CSV_FILE_PATH_PAYMENTS = '/home/opc/downloads/payments.csv'
+CSV_FILE_PATH_ORDERS = '/home/opc/downloads/orders.csv'
+CSV_FILE_PATH_PRODUCTS = '/home/opc/downloads/products.csv'
 
 SQLPLUS_PATH = '/usr/lib/oracle/23/client64/bin/sqlplus'  
 DB_USER = os.environ.get('DB_USERNAME')
