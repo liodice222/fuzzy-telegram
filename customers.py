@@ -97,7 +97,7 @@ try:
     file_content = get_obj_response.data.content
     df = pd.read_csv(BytesIO(file_content))
 
-    # Generate SQL INSERT statements for each row in the DataFrame
+     # Generate SQL INSERT statements for each row in the DataFrame
     insert_statements = []
     for _, row in df.iterrows():
         values = ', '.join([f"'{str(value).replace("'", "''")}'" if isinstance(value, str) else str(value) for value in row])
