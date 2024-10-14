@@ -24,7 +24,6 @@ for row in rows:
 insert_statements = []
 for row in rows:
     try:
-        # Assuming the date format in the CSV is 'YYYY-MM-DD'
         insert_statements.append(
             f"INSERT INTO customers (customer_id, first_name, last_name, email, created_at) "
             f"VALUES ({row[0]}, '{row[1]}', '{row[2]}', '{row[3]}', TO_DATE('{row[4]}', 'MM/DD/YYYY'));\n"
@@ -32,15 +31,25 @@ for row in rows:
     except Exception as e:
         print(f"Error processing row: {row}")
         print(f"Exception: {e}")
+        
+# Add a query to show the inserted records
+query_statements = "SELECT * FROM customers WHERE customer_id IN ("
+query_statements += ", ".join([row[0] for row in rows])
+query_statements += ");\n"
 
 # Write the SQL statements to a temporary SQL file
 sql_file_path = '/tmp/insert_customers.sql'
 with open(sql_file_path, mode='w') as sql_file:
     sql_file.write("SET DEFINE OFF;\n")  # Disable variable substitution
     sql_file.writelines(insert_statements)
+    sql_file.write(query_statements)  
+    sql_file.write("EXIT;\n")  
 
 # Execute the SQL file using sqlplus
 command = f"{SQLPLUS_PATH} {DB_USER}/{DB_PASSWORD}@{DB_DSN} @ {sql_file_path}"
 subprocess.run(command, shell=True)
+
+print(result.stdout)
+print(result.stderr)
 
 print("First ten lines inserted into the ADW.")
