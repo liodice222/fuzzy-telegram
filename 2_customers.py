@@ -2,6 +2,8 @@ import oci
 import pandas as pd
 import cx_Oracle
 import os
+from io import StringIO
+
 # OCI configuration
 config_path = "/home/opc/.oci/config"
 bucket_name = "DEP-ASH-OBJ-01"
