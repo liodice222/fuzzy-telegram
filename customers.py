@@ -1,17 +1,8 @@
-import cx_Oracle
+import subprocess
 import oci
 import pandas as pd
 from io import BytesIO
-import subprocess
 import os
-
-# Database connection
-dsn = cx_Oracle.makedsn(
-    "lqnycsa0.adb.us-ashburn-1.oraclecloud.com", 
-    1522, 
-    service_name="s5bmgthkjolzqu8_dep_high.adb.oraclecloud.com"
-)
-connection = cx_Oracle.connect("DB_USERNAME", "DB_PASSWORD", dsn, encoding="UTF-8")
 
 # OCI configuration
 config_path = "/home/opc/.oci/config"
@@ -87,12 +78,15 @@ create_tables_sql = [
     """
 ]
 
-# Execute SQL commands
-cursor = connection.cursor()
-for sql in create_tables_sql:
-    cursor.execute(sql)
-connection.commit()
+# Write SQL commands to a file
+with open("create_tables.sql", "w") as sql_file:
+    for sql in create_tables_sql:
+        sql_file.write(sql + "\n")
 
-# Close the connection
-cursor.close()
-connection.close()
+# Execute SQL commands using sqlplus
+db_username = os.getenv("DB_USERNAME")
+db_password = os.getenv("DB_PASSWORD")
+connection_string = "(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=lqnycsa0.adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=s5bmgthkjolzqu8_dep_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))"
+
+sqlplus_command = f"sqlplus {db_username}/{db_password}@{connection_string} @create_tables.sql"
+subprocess.run(["sudo", "sh", "-c", sqlplus_command], check=True)
