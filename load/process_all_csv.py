@@ -48,7 +48,7 @@ with open(sql_file_path, mode='w') as sql_file:
 
 # Execute the SQL file using sqlplus
 command = f"{SQLPLUS_PATH} {DB_USER}/{DB_PASSWORD}@{DB_DSN} @ {sql_file_path}"
-result = subprocess.run(command, shell=True, text=True)
+result = subprocess.run(command, shell=True)
 
 print(result.stdout)
 print(result.stderr)
