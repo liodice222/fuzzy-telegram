@@ -1,6 +1,9 @@
 import cx_Oracle
 import os
 
+# set environment variables
+os.environ['TNS_ADMIN'] ='/home/opc/wallet'
+
 # Database credentials
 db_username = os.environ.get('DB_USERNAME')
 db_password = os.environ.get('DB_PASSWORD')
