@@ -7,6 +7,9 @@ password = os.environ.get('DB_PASSWORD')
 dsn = "(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=lqnycsa0.adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=s5bmgthkjolzqu8_dep_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))"
 
 def create_tables():
+    print("user:", user, "/n")
+    print("password:", password, "/n")
+    print("dsn:", dsn, "/n")
     connection = cx_Oracle.connect(user=user, password=password, dsn=dsn)
     cursor = connection.cursor()
 
