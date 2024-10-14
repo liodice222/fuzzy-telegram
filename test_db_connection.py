@@ -13,6 +13,7 @@ print(f"DSN: {db_dsn}")
 try:
     # Connect to the Oracle database with a timeout
     connection = cx_Oracle.connect(db_username, db_password, db_dsn)
+    cursor = connection.cursor()
     print("Connected to the database")
     
     # Perform database operations here
