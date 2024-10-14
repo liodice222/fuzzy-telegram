@@ -2,7 +2,7 @@ import cx_Oracle
 import os
 
 # set environment variables
-os.environ['TNS_ADMIN'] ='/home/opc/wallet'
+TNS_ADMIN = os.environ.get('TNS_ADMIN')
 
 # Database credentials
 db_username = os.environ.get('DB_USERNAME')
@@ -17,7 +17,11 @@ print(f"Wallet Location: {wallet_location}")
 
 try:
     # Connect to the Oracle database with a timeout
-    connection = cx_Oracle.connect(db_username, db_password, db_dsn)
+    connection = cx_Oracle.connect(user=db_username,
+        password=db_password,
+        dsn=db_dsn,
+        encoding="UTF-8",
+        nencoding="UTF-8")
     print("Connected to the database")
     
     # Perform database operations here
