@@ -83,10 +83,17 @@ with open("create_tables.sql", "w") as sql_file:
     for sql in create_tables_sql:
         sql_file.write(sql + "\n")
 
-# Execute SQL commands using sqlplus
+# Write the sqlplus command to a shell script
 db_username = os.getenv("DB_USERNAME")
 db_password = os.getenv("DB_PASSWORD")
 connection_string = "(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=lqnycsa0.adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=s5bmgthkjolzqu8_dep_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))"
 
-sqlplus_command = f"sqlplus {db_username}/{db_password}@{connection_string} @create_tables.sql"
-subprocess.run(["sudo", "sh", "-c", sqlplus_command], check=True)
+with open("run_sqlplus.sh", "w") as script_file:
+    script_file.write(f"#!/bin/bash\n")
+    script_file.write(f"sqlplus {db_username}/{db_password}@'{connection_string}' @create_tables.sql\n")
+
+# Make the shell script executable
+subprocess.run(["chmod", "+x", "run_sqlplus.sh"], check=True)
+
+# Execute the shell script
+subprocess.run(["sudo", "./run_sqlplus.sh"], check=True)
