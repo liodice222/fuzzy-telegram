@@ -6,9 +6,6 @@ user = os.environ.get('DB_USERNAME')
 password = os.environ.get('DB_PASSWORD')
 dsn = os.environ.get('DB_DSN')
 def create_tables():
-    print("user:", user, "/n")
-    print("password:", password, "/n")
-    print("dsn:", dsn, "/n")
     connection = cx_Oracle.connect(user=user, password=password, dsn=dsn)
     cursor = connection.cursor()
 
