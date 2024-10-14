@@ -90,7 +90,7 @@ connection_string = "(description=(retry_count=20)(retry_delay=3)(address=(proto
 
 with open("run_sqlplus.sh", "w") as script_file:
     script_file.write(f"#!/bin/bash\n")
-    script_file.write(f"sqlplus {db_username}/{db_password}@'{connection_string}' @create_tables.sql\n")
+    script_file.write(f"echo 'exit' | sqlplus {db_username}/{db_password}@'{connection_string}' @create_tables.sql\n")
 
 # Make the shell script executable
 subprocess.run(["chmod", "+x", "run_sqlplus.sh"], check=True)
