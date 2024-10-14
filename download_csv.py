@@ -3,13 +3,16 @@ import os
 
 # Define variables
 BUCKET_NAME = 'DEP-ASH-OBJ-01'
-NAMESPACE = object_storage_client.get_namespace().dat
 DESTINATION_DIR = '/home/opc/downloads'
 
-
 # Initialize OCI config and client
-config = oci.config.from_file()
+config_path = "/home/opc/.oci/config"
+config = oci.config.from_file(file_location=config_path)
 object_storage_client = oci.object_storage.ObjectStorageClient(config)
+
+# Get namespace
+NAMESPACE = object_storage_client.get_namespace().data
+
 
 # List objects in the bucket
 objects = object_storage_client.list_objects(NAMESPACE, BUCKET_NAME, fields='name').data.objects
@@ -23,3 +26,4 @@ for obj in objects:
             f.write(get_obj.data.content)
 
 print("Download completed.")
+
