@@ -2,9 +2,9 @@ import cx_Oracle
 import os
 
 # Database credentials
-db_username = os.getenv('DB_USERNAME')
-db_password = os.getenv('DB_PASSWORD')
-db_dsn = os.getenv('DB_DSN')
+db_username = os.environ.get('DB_USERNAME')
+db_password = os.environ.get('DB_PASSWORD')
+db_dsn = os.environ.get('DB_DSN')
 
 try:
     # Connect to the Oracle database with a timeout
