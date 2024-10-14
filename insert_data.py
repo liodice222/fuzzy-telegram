@@ -27,7 +27,7 @@ for row in rows:
         # Assuming the date format in the CSV is 'YYYY-MM-DD'
         insert_statements.append(
             f"INSERT INTO customers (customer_id, first_name, last_name, email, created_at) "
-            f"VALUES ({row[0]}, '{row[1]}', '{row[2]}', '{row[3]}', TO_DATE('{row[4]}', 'YYYY-MM-DD'));\n"
+            f"VALUES ({row[0]}, '{row[1]}', '{row[2]}', '{row[3]}', TO_DATE('{row[4]}', 'MM/DD/YYYY'));\n"
         )
     except Exception as e:
         print(f"Error processing row: {row}")
