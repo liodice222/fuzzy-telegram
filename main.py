@@ -5,8 +5,7 @@ import subprocess
 from extract.Create_Tables import Create_Tables
 from extract.download_csv import download_csv
 
-#import modules for loading 
-from load.process_all_csv_2 import process_csv_to_sql 
+#import modules for loading  
 from load.process_all_csv_2 import process_and_load_data
 
 #import modules for cleaning 
@@ -35,7 +34,7 @@ if __name__ == "__main__":
     print("Starting processing and laoding data...")
     process_and_load_data()
     
-    print("Starting upload of new CS to Object Storage...")
+    print("Starting upload of new CSV to Object Storage...")
     process_and_upload_all_csvs()
     
     print("Starting removal of old CSV from instance...")
