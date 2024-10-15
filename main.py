@@ -37,5 +37,3 @@ if __name__ == "__main__":
     print("Starting upload of new CSV to Object Storage...")
     process_and_upload_all_csvs()
     
-    print("Starting removal of old CSV from instance...")
-    delete_specified_files()
