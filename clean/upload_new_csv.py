@@ -33,18 +33,11 @@ def process_and_upload_all_csvs():
             csv_reader = csv.reader(file)
             all_rows = list(csv_reader)
 
-        # Write the remaining rows to a new CSV file
+        # Write the remaining rows to the same CSV file
         with open(csv_file_path, mode='w', newline='') as file:
             csv_writer = csv.writer(file)
             csv_writer.writerow(header)  # Write the header
             csv_writer.writerows(all_rows[11:])  # Write the remaining rows
-
-        # Delete the old CSV file
-        try:
-            os.remove(csv_file_path)
-            print(f"Deleted {csv_file_path}")
-        except Exception as e:
-            print(f"Error deleting {csv_file_path}: {e}")
 
         # Upload the new CSV file to object storage
         try:
@@ -59,7 +52,7 @@ def process_and_upload_all_csvs():
         except Exception as e:
             print(f"Error uploading {csv_file_path}: {e}")
 
-        # Delete the new CSV file from the local directory
+        # Delete the old CSV file
         try:
             os.remove(csv_file_path)
             print(f"Deleted {csv_file_path}")
@@ -72,6 +65,6 @@ def process_and_upload_all_csvs():
 
     print("CSV processing and upload completed.")
 
-# Uncomment the following lines if you want to run this script standalone
+
 # if __name__ == "__main__":
 #     process_and_upload_all_csvs()
