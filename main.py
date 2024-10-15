@@ -31,11 +31,8 @@ if __name__ == "__main__":
     
     print("Starting extraction...")
     download_csv()
-    
-    print("Starting processing data...")
-    process_csv_to_sql()
 
-    print("Starting laoding data...")
+    print("Starting processing and laoding data...")
     process_and_load_data()
     
     print("Starting upload of new CS to Object Storage...")

@@ -1,6 +1,8 @@
 import oci
 import os
 
+#TODO: create if statement to make sure files are not already downloaded 
+
 def download_csv():
     # Define variables
     BUCKET_NAME = 'DEP-ASH-OBJ-01'
