@@ -1,11 +1,11 @@
 import cx_Oracle
 import os
 
-# Autonomous Database connection info
-user = os.environ.get('DB_USERNAME')
-password = os.environ.get('DB_PASSWORD')
-dsn = os.environ.get('DB_DSN')
-def create_tables():
+def Create_Tables():
+    user = os.environ.get('DB_USERNAME')
+    password = os.environ.get('DB_PASSWORD')
+    dsn = os.environ.get('DB_DSN')
+
     connection = cx_Oracle.connect(user=user, password=password, dsn=dsn)
     cursor = connection.cursor()
 
@@ -52,6 +52,6 @@ def create_tables():
     cursor.close()
     connection.close()
 
-if __name__ == "__main__":
-    create_tables()
-    print('Tables Created.')
+# if __name__ == "__main__":
+#     create_tables()
+#     print('Tables Created.')
