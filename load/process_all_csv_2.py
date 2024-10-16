@@ -22,8 +22,13 @@ def process_csv_to_sql(csv_file_path, table_name, columns, date_columns=None, ro
         header = next(csv_reader)  # Skip the header
         print(f"CSV header: {header}")
 
-        rows = [next(csv_reader) for _ in range(row_limit)]  # Read the specified number of lines
-        print(f"Read {len(rows)} rows from the CSV file")
+        # Read rows with exception handling for shorter files
+        rows = []
+        try:
+            for _ in range(row_limit):
+                rows.append(next(csv_reader))
+        except StopIteration:
+            print(f"End of file reached after reading {len(rows)} rows")
 
         for row in rows:
             values = []
@@ -42,6 +47,7 @@ def process_csv_to_sql(csv_file_path, table_name, columns, date_columns=None, ro
 
     print(f"Generated {len(insert_statements)} SQL insert statements for table: {table_name}")
     return insert_statements
+
 
 def process_and_load_data():
     # Define variables
