@@ -34,8 +34,11 @@ def process_csv_to_sql(csv_file_path, table_name, columns, date_columns=None, ro
             values = []
             for i, column in enumerate(columns):
                 if column in date_columns:
-                    # Format date columns using TO_DATE
-                    values.append(f"TO_DATE('{row[i]}', 'MM/DD/YYYY')")
+                    # Check if the date column is not empty
+                    if row[i]:
+                        values.append(f"TO_DATE('{row[i]}', 'MM/DD/YYYY')")
+                    else:
+                        values.append('NULL')  # Insert NULL if the date is empty
                 else:
                     # Handle other columns, escaping single quotes in string values
                     value = row[i].replace("'", "''") if isinstance(row[i], str) else row[i]
@@ -117,6 +120,7 @@ def process_and_load_data():
         print("Data inserted into the ADB from all CSV files successfully.")
     else:
         print("Error occurred while inserting data into the ADB.")
+
 
 # if __name__ == "__main__":
 #     process_and_load_data()
