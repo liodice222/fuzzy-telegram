@@ -13,7 +13,7 @@ DB_DSN = os.environ.get('DB_DSN')
 with open(CSV_FILE_PATH, mode='r') as file:
     csv_reader = csv.reader(file)
     header = next(csv_reader)  # Skip the header
-    rows = [next(csv_reader) for _ in range(10)]  # Read the first ten lines
+    rows = [next(csv_reader) for _ in range(1000)]  # Read the first ten lines
 
 # Debugging: Print the rows to check the date format
 print("First ten rows from the CSV file:")
