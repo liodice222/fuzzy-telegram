@@ -64,20 +64,20 @@ def process_and_load_data():
         date_columns=['created_at']
     )
 
-    print("Processing payments CSV file...")
-    insert_statements_payments = process_csv_to_sql(
-        CSV_FILE_PATH_PAYMENTS, 
-        'payments', 
-        ['payment_id', 'order_id', 'amount', 'payment_date'],
-        date_columns=['payment_date']
-    )
-
     print("Processing orders CSV file...")
     insert_statements_orders = process_csv_to_sql(
         CSV_FILE_PATH_ORDERS, 
         'orders', 
         ['order_id', 'customer_id', 'order_date', 'total_amount'],
         date_columns=['order_date']
+    )
+
+    print("Processing payments CSV file...")
+    insert_statements_payments = process_csv_to_sql(
+        CSV_FILE_PATH_PAYMENTS, 
+        'payments', 
+        ['payment_id', 'order_id', 'amount', 'payment_date'],
+        date_columns=['payment_date']
     )
 
     print("Processing products CSV file...")
@@ -93,8 +93,8 @@ def process_and_load_data():
     with open(sql_file_path, mode='w') as sql_file:
         sql_file.write("SET DEFINE OFF;\n")  # Disable variable substitution
         sql_file.writelines(insert_statements_customers)
-        sql_file.writelines(insert_statements_payments)
         sql_file.writelines(insert_statements_orders)
+        sql_file.writelines(insert_statements_payments)
         sql_file.writelines(insert_statements_products)
         sql_file.write("EXIT;\n")
 
