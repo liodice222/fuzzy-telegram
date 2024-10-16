@@ -101,7 +101,7 @@ def process_and_load_data():
     # Execute the SQL file using sqlplus
     command = f"{SQLPLUS_PATH} {DB_USER}/{DB_PASSWORD}@{DB_DSN} @{sql_file_path}"
     print(f"Executing SQL file using command: {command}")
-    result = subprocess.run(command, shell=True, universal_newlines=True, capture_output=True)
+    result = subprocess.run(command, shell=True, universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     print("SQL*Plus output:")
     print(result.stdout)
