@@ -2,7 +2,7 @@ import csv
 import subprocess
 import os
 
-def process_csv_to_sql(csv_file_path, table_name, columns, date_columns=None, row_limit=10):
+def process_csv_to_sql(csv_file_path, table_name, columns, date_columns=None, row_limit=1000):
     """
     Processes a CSV file and generates SQL insert statements.
 
