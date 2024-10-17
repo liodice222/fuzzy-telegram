@@ -42,11 +42,11 @@ def Create_Tables():
             )''',
         'payments': '''
             CREATE TABLE payments (
-                payment_id NUMBER PRIMARY KEY,
+                payment_id NUMBER PRIMARY KEY,  -- Ensures uniqueness for each payment
                 order_id NUMBER,
                 amount NUMBER(10, 2),
                 payment_date DATE,
-                FOREIGN KEY (order_id) REFERENCES orders(order_id)
+                FOREIGN KEY (order_id) REFERENCES orders(order_id)  -- Links payments to valid orders
             )'''
     }
 
