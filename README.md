@@ -14,3 +14,5 @@ Python was used to:
 [Data_Engineering_Proj_ERD.pdf](https://github.com/user-attachments/files/17719830/Data_Engineering_Proj_ERD.pdf)
 
 [DEP_Architecture_Diagram.pdf](https://github.com/user-attachments/files/17719920/DEP_Architecture_Diagram.pdf)
+
+Presentation Video: https://www.youtube.com/watch?v=a1c9JQlf8q0
