@@ -9,5 +9,8 @@ Python was used to:
 3) Load data from csvs on instance onto ADW using sqlplus
 4) Verify data was loaded and then upload new csvs to Object Storage via private endpoint
 5) Remove csvs from private instance
-6) Data Visualization was completed on this repo pulling from ADW https://github.com/liodice222/ubiquitous-train-deploy-jupyter 
+6) Data Visualization was completed on this repo pulling from ADW https://github.com/liodice222/ubiquitous-train-deploy-jupyter
+
 [Data_Engineering_Proj_ERD.pdf](https://github.com/user-attachments/files/17719830/Data_Engineering_Proj_ERD.pdf)
+
+[DEP_Architecture_Diagram.pdf](https://github.com/user-attachments/files/17719920/DEP_Architecture_Diagram.pdf)
